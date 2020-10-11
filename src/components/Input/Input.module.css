@@ -1,0 +1,34 @@
+.InputDiv {
+  width:100%;
+  padding: 5px;
+  box-sizing: border-box;
+  color: #ccc;
+}
+.Label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}
+.InputType{
+  width: 80%;
+  color: #474747;
+  outline: none;
+  border: 1px solid #ccc;
+  background-color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+.InputType:focus {
+  outline: none;
+  background-color: #ccc;
+}
+.CheckboxType {
+  
+  }
+
+  @media only screen and (max-width: 600px)
+{
+.InputType {
+    width:fit-content;
+}
+}
