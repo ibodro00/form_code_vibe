@@ -11,7 +11,7 @@
   width: 30%;
 }
 .H1 {
-  margin-top:5%;
+  margin-top: 5%;
   color: white;
 }
 .Button {
@@ -26,12 +26,17 @@
   color: white;
   font-weight: bold;
 }
-@media only screen and (max-width: 600px)
-{
-.Button {
-    width:fit-content;
+.Button:disabled {
+  cursor: not-allowed;
 }
-.Form{
-  width:fit-content;
+.Button:disabled:hover {
+  background-color: rgb(190, 190, 190);
 }
+@media only screen and (max-width: 600px) {
+  .Button {
+    width: fit-content;
+  }
+  .Form {
+    width: fit-content;
+  }
 }

@@ -1,5 +1,5 @@
 .InputDiv {
-  width:100%;
+  width: 100%;
   padding: 5px;
   box-sizing: border-box;
   color: #ccc;
@@ -9,7 +9,7 @@
   display: block;
   margin-bottom: 8px;
 }
-.InputType{
+.InputType {
   width: 80%;
   color: #474747;
   outline: none;
@@ -22,13 +22,20 @@
   outline: none;
   background-color: #ccc;
 }
-.CheckboxType {
-  
-  }
-
-  @media only screen and (max-width: 600px)
-{
-.InputType {
-    width:fit-content;
+.Invalid {
+  border: 0.5px solid red;
+  background-color: rgb(255, 206, 206);
 }
+.Error {
+  color: rgb(255, 124, 124);
+  display: block;
+  width: 100%;
+}
+.Checkbox {
+  width: 5%;
+}
+@media only screen and (max-width: 600px) {
+  .InputType {
+    width: fit-content;
+  }
 }
