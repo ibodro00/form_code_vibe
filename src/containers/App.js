@@ -75,7 +75,7 @@ class App extends Component {
       ),
       email: this.stateConfig(
         "input",
-        "email",
+        "text",
         "Your email",
         "",
         true,
@@ -123,7 +123,6 @@ class App extends Component {
       value_copy.isfocused = !this.state.inputs.checkbox.isfocused;
     }
     value_copy.touched = true;
-
     array_copy[inputIndetifier] = value_copy;
     let isformValid = true;
     for (const i in array_copy) {
@@ -172,6 +171,7 @@ class App extends Component {
     };
     if (event.type === "blur") value_copy.isfocused = false;
     else if (event.type === "focus") value_copy.isfocused = true;
+    // console.log(value_copy);
     array_copy[inputIndetifier] = value_copy;
     this.setState({
       inputs: array_copy,
