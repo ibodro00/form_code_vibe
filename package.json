@@ -12,7 +12,8 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
     "regex": "^0.1.1",
-    "regex-test": "^0.1.1"
+    "regex-test": "^0.1.1",
+    "uuid": "^8.3.1"
   },
   "scripts": {
     "start": "react-scripts start",
