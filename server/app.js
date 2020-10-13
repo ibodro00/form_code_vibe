@@ -11,7 +11,9 @@ app.use(express.static(buildPath));
 
 app.post("/", (req, res) => {
   const uuid = uuidv4();
-  const write = fs.createWriteStream(req.body.name + req.body.lastname + uuid + ".txt");
+  const write = fs.createWriteStream(
+    req.body.name + req.body.lastname + uuid + ".txt"
+  );
   const array = [];
   for (let key in req.body) {
     array.push({
