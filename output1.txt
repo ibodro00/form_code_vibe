@@ -1,0 +1,6 @@
+name:ds
+lastname:ds
+address:ds
+phone:+0000000000
+email:ds@ds.hr
+checkbox:true

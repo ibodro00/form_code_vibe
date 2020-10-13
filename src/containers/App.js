@@ -12,7 +12,11 @@ class App extends Component {
     require_value,
     isValid,
     touched,
-    focused
+    focused,
+    regexphone,
+    regexmail,
+    require_mail,
+    require_phone
   ) => {
     let object = null;
     object = {
@@ -24,10 +28,14 @@ class App extends Component {
       value: value,
       validation: {
         required: require_value,
+        mail: require_mail,
+        phone: require_phone,
       },
       valid: isValid,
       touched: touched,
       isfocused: focused,
+      mailvalid: regexmail,
+      phonevalid: regexphone,
     };
     return object;
   };
@@ -41,7 +49,11 @@ class App extends Component {
         true,
         false,
         false,
-        true
+        false,
+        false,
+        false,
+        false,
+        false
       ),
       lastname: this.stateConfig(
         "input",
@@ -51,7 +63,11 @@ class App extends Component {
         true,
         false,
         false,
-        true
+        false,
+        false,
+        false,
+        false,
+        false
       ),
       address: this.stateConfig(
         "input",
@@ -61,13 +77,21 @@ class App extends Component {
         true,
         false,
         false,
-        true
+        false,
+        false,
+        false,
+        false,
+        false
       ),
       phone: this.stateConfig(
         "input",
         "tel",
         "Phone number",
         "",
+        true,
+        false,
+        false,
+        false,
         true,
         false,
         false,
@@ -81,7 +105,11 @@ class App extends Component {
         true,
         false,
         false,
-        true
+        false,
+        false,
+        true,
+        true,
+        false
       ),
       checkbox: this.stateConfig(
         "input",
@@ -89,6 +117,10 @@ class App extends Component {
         "",
         false,
         true,
+        false,
+        false,
+        false,
+        false,
         false,
         false,
         false
@@ -123,18 +155,30 @@ class App extends Component {
       value_copy.isfocused = !this.state.inputs.checkbox.isfocused;
     }
     value_copy.touched = true;
+    value_copy.mailvalid = this.mailHandler(
+      value_copy.value,
+      value_copy.validation
+    );
+    value_copy.phonevalid = this.phoneHandler(
+      value_copy.value,
+      value_copy.validation
+    );
     array_copy[inputIndetifier] = value_copy;
     let isformValid = true;
     for (const i in array_copy) {
-      isformValid = array_copy[i].valid && isformValid;
+      isformValid =
+        array_copy[i].valid &&
+        isformValid &&
+        array_copy["email"].mailvalid &&
+        array_copy["phone"].phonevalid;
     }
-
     this.setState({
       inputs: array_copy,
       formValidation: isformValid,
     });
   };
-  submitHandler = () => {
+  submitHandler = (event) => {
+    event.preventDefault();
     const data = {
       name: this.state.inputs.name.value,
       lastname: this.state.inputs.lastname.value,
@@ -143,10 +187,19 @@ class App extends Component {
       email: this.state.inputs.email.value,
       checkbox: this.state.inputs.checkbox.value,
     };
+
+    const array_copy = {
+      ...this.state.inputs,
+    };
+
+    for (let key in array_copy) array_copy[key].value = "";
+
     axios
       .post("/", data)
       .then((response) => {
-        console.log(response);
+        this.setState({
+          inputs: array_copy,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -171,11 +224,20 @@ class App extends Component {
     };
     if (event.type === "blur") value_copy.isfocused = false;
     else if (event.type === "focus") value_copy.isfocused = true;
-    // console.log(value_copy);
     array_copy[inputIndetifier] = value_copy;
     this.setState({
       inputs: array_copy,
     });
+  };
+  mailHandler = (value, requirements) => {
+    const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (requirements.mail) return regex.test(String(value).toLowerCase());
+    else return true;
+  };
+  phoneHandler = (value, requirements) => {
+    const regex = /\+\d{10}$/;
+    if (requirements.phone) return regex.test(String(value).toLowerCase());
+    else return true;
   };
   render() {
     const array = [];
@@ -187,7 +249,10 @@ class App extends Component {
       });
     }
     form_elements = (
-      <form className={classes.Form} onSubmit={this.submitHandler}>
+      <form
+        className={classes.Form}
+        onSubmit={(event) => this.submitHandler(event)}
+      >
         <h4>Please, enter your data</h4>
         {array.map((form_element) => {
           return (
@@ -202,7 +267,8 @@ class App extends Component {
               defocus={(event) => this.focusHandler(event, form_element.id)}
               focus={(event) => this.focusHandler(event, form_element.id)}
               isfocused={form_element.elements.isfocused}
-              pattern={form_element.elements.pattern}
+              mailtest={form_element.elements.mailvalid}
+              phonetest={form_element.elements.phonevalid}
             />
           );
         })}

@@ -10,15 +10,17 @@
     "express": "^4.17.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "regex": "^0.1.1",
+    "regex-test": "^0.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-app":"npm run build && node server/app.js",
-    "server":"node server/app.js"
+    "start-app": "npm run build && node server/app.js",
+    "server": "node server/app.js"
   },
   "eslintConfig": {
     "extends": "react-app"

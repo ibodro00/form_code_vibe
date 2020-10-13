@@ -4,7 +4,7 @@ const app = express();
 const buildPath = path.join(__dirname, "..", "build");
 const fs = require("fs");
 
-app.listen(3000);
+app.listen(4000);
 
 app.use(express.json());
 app.use(express.static(buildPath));
@@ -21,4 +21,5 @@ app.post("/", (req, res) => {
   array.map((element) =>
     write.write(String(element.id) + ":" + String(element.elements) + "\n")
   );
+  res.json("OK");
 });
