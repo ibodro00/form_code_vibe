@@ -1,0 +1,6 @@
+name:Tihomir
+lastname:Brkljača
+address:Rudjera Boskovica 25/27
+phone:+0918870878
+email:tbrkljaca@codevibe.hr
+checkbox:true

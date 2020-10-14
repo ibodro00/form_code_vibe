@@ -1,6 +1,0 @@
-name:dada
-lastname:dada
-address:dada
-phone:+9876543210
-email:da@da.com
-checkbox:true
