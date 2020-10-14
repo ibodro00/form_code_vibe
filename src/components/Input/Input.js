@@ -7,6 +7,7 @@ const input = (props) => {
   let email_error = null;
   let phone_error = null;
   const classes_array = [classes.InputType];
+
   if (props.invalid && props.touched && !props.isfocused) {
     error_message = "Required";
     classes_array.push(classes.Invalid);
@@ -21,6 +22,7 @@ const input = (props) => {
   }
   if (props.elementprops.type === "checkbox")
     classes_array.push(classes.Checkbox);
+
   switch (props.elementprops.type) {
     case "checkbox":
       InputType = (
