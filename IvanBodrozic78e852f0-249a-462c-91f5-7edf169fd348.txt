@@ -1,0 +1,6 @@
+name:Ivan
+lastname:Bodrozic
+address:Petra Krešimira IV 105
+phone:+0998416690
+email:ivanb373@gmail.com
+checkbox:true

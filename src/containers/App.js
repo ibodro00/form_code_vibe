@@ -192,7 +192,7 @@ class App extends Component {
     if (requirements.phone) return regex.test(String(value).toLowerCase());
     else return true;
   };
-  
+
   render() {
     const array = [];
     let form_elements = null;

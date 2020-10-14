@@ -17,7 +17,7 @@
 .Button {
   border: 1px solid #ccc;
   margin: 0 auto;
-  background-color: rgb(224, 171, 71);
+  background-color:rgb(190, 190, 190);
   margin-top: 2%;
   padding: 10px;
   border-radius: 5px;
@@ -32,7 +32,10 @@
 .Button:disabled:hover {
   background-color: rgb(190, 190, 190);
 }
-@media only screen and (max-width: 600px) {
+.Button:enabled{
+  background-color: rgb(224, 171, 71);
+}
+@media only screen and (max-width: 650px) {
   .Button {
     width: fit-content;
   }
